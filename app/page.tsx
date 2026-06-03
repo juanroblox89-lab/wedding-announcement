@@ -1,4 +1,3 @@
-import { Masthead } from '@/components/newspaper/masthead'
 import { Headline } from '@/components/newspaper/headline'
 import { EventDetails } from '@/components/newspaper/event-details'
 import { RSVPForm } from '@/components/newspaper/rsvp-form'
@@ -9,8 +8,6 @@ export default function WeddingPage() {
     <main className="min-h-screen bg-paper newspaper-texture">
       {/* Newspaper container */}
       <div className="max-w-3xl mx-auto px-4 md:px-8 py-6 bg-paper shadow-2xl shadow-ink/20 min-h-screen">
-        <Masthead />
-
         <div className="py-2">
           <Headline />
         </div>
