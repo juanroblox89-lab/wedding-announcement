@@ -1,6 +1,5 @@
 import type { Metadata } from 'next'
 import { UnifrakturMaguntia, Lora } from 'next/font/google'
-import { Analytics } from '@vercel/analytics/next'
 import './globals.css'
 
 const unifraktur = UnifrakturMaguntia({
@@ -15,9 +14,8 @@ const lora = Lora({
 })
 
 export const metadata: Metadata = {
-  title: 'Las Noticias - ¡Nos Casamos!',
-  description: 'Invitación de boda — Confirmá tu asistencia y celebrá con nosotros este día tan especial.',
-  generator: 'v0.app',
+  title: 'Las Noticias - Jesus y Katherine se casan',
+  description: 'Invitacion de boda de Jesus y Katherine — 7 de Agosto 2026 en Villa Cielo. Confirma tu asistencia.',
 }
 
 export default function RootLayout({
@@ -29,7 +27,6 @@ export default function RootLayout({
     <html lang="es" className={`${unifraktur.variable} ${lora.variable} bg-paper`}>
       <body className="font-serif antialiased">
         {children}
-        {process.env.NODE_ENV === 'production' && <Analytics />}
       </body>
     </html>
   )

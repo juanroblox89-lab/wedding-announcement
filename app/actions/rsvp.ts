@@ -13,11 +13,7 @@ export async function submitRSVP(
   formData: FormData
 ): Promise<RSVPState> {
   const nombre = formData.get('nombre') as string
-  const email = formData.get('email') as string
-  const telefono = formData.get('telefono') as string
   const numInvitados = parseInt(formData.get('num_invitados') as string, 10) || 1
-  const confirmado = formData.get('confirmado') === 'si'
-  const mensaje = formData.get('mensaje') as string
 
   // Validation
   const errors: Record<string, string> = {}
@@ -37,15 +33,12 @@ export async function submitRSVP(
 
     const { error } = await supabase.from('wedding_rsvp').insert({
       nombre: nombre.trim(),
-      email: email?.trim() || null,
-      telefono: telefono?.trim() || null,
       num_invitados: numInvitados,
-      confirmado,
-      mensaje: mensaje?.trim() || null,
+      confirmado: true,
     })
 
     if (error) {
-      console.error('[v0] Supabase insert error:', error)
+      console.error('Supabase insert error:', error)
       return {
         success: false,
         message: 'Hubo un error al enviar tu confirmacion. Intenta nuevamente.',
@@ -54,12 +47,10 @@ export async function submitRSVP(
 
     return {
       success: true,
-      message: confirmado
-        ? `¡Gracias, ${nombre.trim()}! Tu asistencia fue confirmada. ¡Te esperamos!`
-        : `Gracias por avisarnos, ${nombre.trim()}. Lamentamos que no puedas asistir.`,
+      message: `¡Gracias, ${nombre.trim()}! Tu asistencia fue confirmada para ${numInvitados} ${numInvitados === 1 ? 'persona' : 'personas'}. ¡Te esperamos el 7 de Agosto en Villa Cielo!`,
     }
   } catch (err) {
-    console.error('[v0] Unexpected error:', err)
+    console.error('Unexpected error:', err)
     return {
       success: false,
       message: 'Error inesperado. Por favor intenta nuevamente.',

@@ -8,7 +8,7 @@ export function NewspaperFooter() {
           Edicion especial unica · No hay suscripcion disponible — el amor no se vende
         </p>
         <p className="font-serif text-xs text-ink-light">
-          &copy; Los Novios, 2026
+          Jesus & Katherine, 2026
         </p>
       </div>
       <div className="h-px bg-ink mt-4" />

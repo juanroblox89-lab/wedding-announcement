@@ -13,6 +13,11 @@ export function Headline() {
         ¡Nos Casamos!
       </h2>
 
+      {/* Names */}
+      <p className="text-center font-blackletter text-4xl md:text-5xl text-ink mt-4">
+        Jesus & Katherine
+      </p>
+
       {/* Deck */}
       <p className="text-center font-serif text-base md:text-lg text-ink-light italic mt-3 text-pretty px-4">
         Tras anos de amor, aventuras compartidas y mil razones para celebrar,<br className="hidden md:block" />
@@ -30,15 +35,15 @@ export function Headline() {
       <div className="relative w-full aspect-[4/3] md:aspect-[16/9] overflow-hidden border border-ink-light">
         <Image
           src="/couple-hero.jpg"
-          alt="Los novios en su sesion de fotos"
+          alt="Jesus y Katherine en el momento de su compromiso"
           fill
-          className="object-cover grayscale contrast-110"
+          className="object-cover"
           priority
         />
         <div className="absolute inset-0 bg-ink/5" />
       </div>
       <p className="text-center text-xs text-ink-muted italic mt-1 font-serif">
-        Foto: Los novios en el momento de su compromiso. — Archivo personal
+        Foto: Jesus y Katherine en el momento de su compromiso. — Archivo personal
       </p>
 
       {/* Two-column story */}
@@ -59,13 +64,13 @@ export function Headline() {
           <div className="relative w-full aspect-video overflow-hidden border border-ink-light">
             <Image
               src="/couple-rings.jpg"
-              alt="Los anillos de compromiso"
+              alt="El anillo de compromiso de Katherine"
               fill
-              className="object-cover grayscale contrast-110"
+              className="object-cover"
             />
           </div>
           <p className="text-xs text-ink-muted italic font-serif text-center">
-            Los anillos que sellaron el compromiso. — Archivo personal
+            El anillo que sello el compromiso. — Archivo personal
           </p>
         </div>
       </div>

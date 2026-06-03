@@ -32,8 +32,6 @@ export default function WeddingPage() {
           <p className="font-serif text-sm text-ink-light italic text-center mb-6 text-pretty">
             Rogamos a todos los invitados completar el siguiente formulario
             <br className="hidden md:block" />
-            antes del{' '}
-            <strong className="text-ink not-italic">15 de Julio de 2026</strong>{' '}
             para poder organizar la celebracion.
           </p>
 
@@ -52,7 +50,7 @@ export default function WeddingPage() {
             </p>
             <div className="h-px bg-ink-light my-2" />
             <p className="font-serif text-xs text-ink-muted">
-              Presentarse el Sabado 15 de Agosto &middot; Se aceptan reservas
+              Presentarse el Viernes 7 de Agosto en Villa Cielo
             </p>
           </div>
         </section>

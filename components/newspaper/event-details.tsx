@@ -1,11 +1,9 @@
 export function EventDetails() {
   const details = [
-    { label: 'Fecha', value: 'Sabado, 15 de Agosto de 2026' },
-    { label: 'Hora', value: '19:00 hrs' },
-    { label: 'Ceremonia', value: 'Iglesia Nuestra Señora del Carmen' },
-    { label: 'Festejo', value: 'Salon de Eventos La Floresta' },
-    { label: 'Direccion', value: 'Av. Siempreviva 742, Buenos Aires' },
-    { label: 'Dress code', value: 'Elegante — Colores claros bienvenidos' },
+    { label: 'Fecha', value: 'Viernes, 7 de Agosto de 2026' },
+    { label: 'Hora', value: '5:00 PM' },
+    { label: 'Lugar', value: 'Villa Cielo' },
+    { label: 'Regalo', value: 'Lluvia de sobres o regalo' },
   ]
 
   return (
@@ -27,11 +25,11 @@ export function EventDetails() {
           </p>
           <div className="divide-y divide-ink-light">
             {details.map((item) => (
-              <div key={item.label} className="flex flex-col sm:flex-row py-2 gap-1 sm:gap-4">
+              <div key={item.label} className="flex flex-col sm:flex-row py-3 gap-1 sm:gap-4">
                 <span className="font-serif font-bold text-xs uppercase tracking-widest text-ink-light w-28 shrink-0">
                   {item.label}
                 </span>
-                <span className="font-serif text-sm text-ink">{item.value}</span>
+                <span className="font-serif text-base text-ink">{item.value}</span>
               </div>
             ))}
           </div>
@@ -45,7 +43,7 @@ export function EventDetails() {
 
       {/* Countdown teaser */}
       <p className="text-center font-serif text-xs text-ink-muted italic mt-4">
-        ✦ Confirma tu asistencia con anticipacion — ver formulario mas abajo ✦
+        Confirma tu asistencia con anticipacion — ver formulario mas abajo
       </p>
     </section>
   )

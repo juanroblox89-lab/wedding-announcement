@@ -54,66 +54,10 @@ export function RSVPForm() {
           )}
         </div>
 
-        {/* Email */}
-        <div className="flex flex-col gap-1">
-          <label htmlFor="email" className="font-serif text-xs uppercase tracking-widest text-ink-light font-bold">
-            Correo electronico
-          </label>
-          <input
-            id="email"
-            name="email"
-            type="email"
-            placeholder="tu@email.com"
-            className="border border-ink bg-paper px-3 py-2 font-serif text-sm text-ink placeholder:text-ink-muted focus:outline-none focus:ring-1 focus:ring-ink w-full"
-          />
-        </div>
-
-        {/* Telefono */}
-        <div className="flex flex-col gap-1">
-          <label htmlFor="telefono" className="font-serif text-xs uppercase tracking-widest text-ink-light font-bold">
-            Telefono (opcional)
-          </label>
-          <input
-            id="telefono"
-            name="telefono"
-            type="tel"
-            placeholder="+54 11 1234-5678"
-            className="border border-ink bg-paper px-3 py-2 font-serif text-sm text-ink placeholder:text-ink-muted focus:outline-none focus:ring-1 focus:ring-ink w-full"
-          />
-        </div>
-
-        {/* Confirmacion */}
-        <div className="flex flex-col gap-2">
-          <p className="font-serif text-xs uppercase tracking-widest text-ink-light font-bold">
-            ¿Confirmas tu asistencia? *
-          </p>
-          <div className="flex gap-6">
-            <label className="flex items-center gap-2 cursor-pointer">
-              <input
-                type="radio"
-                name="confirmado"
-                value="si"
-                defaultChecked
-                className="accent-ink w-4 h-4"
-              />
-              <span className="font-serif text-sm text-ink">Si, alli estare</span>
-            </label>
-            <label className="flex items-center gap-2 cursor-pointer">
-              <input
-                type="radio"
-                name="confirmado"
-                value="no"
-                className="accent-ink w-4 h-4"
-              />
-              <span className="font-serif text-sm text-ink">No podre ir</span>
-            </label>
-          </div>
-        </div>
-
         {/* Numero de invitados */}
         <div className="flex flex-col gap-1">
           <label htmlFor="num_invitados" className="font-serif text-xs uppercase tracking-widest text-ink-light font-bold">
-            Numero de personas (incluido vos)
+            Numero de personas (incluido tu)
           </label>
           <select
             id="num_invitados"
@@ -130,20 +74,6 @@ export function RSVPForm() {
           {state.errors?.num_invitados && (
             <p className="text-xs text-destructive font-serif">{state.errors.num_invitados}</p>
           )}
-        </div>
-
-        {/* Mensaje */}
-        <div className="flex flex-col gap-1">
-          <label htmlFor="mensaje" className="font-serif text-xs uppercase tracking-widest text-ink-light font-bold">
-            Mensaje para los novios (opcional)
-          </label>
-          <textarea
-            id="mensaje"
-            name="mensaje"
-            rows={3}
-            placeholder="Un mensaje, deseo o algun requerimiento especial..."
-            className="border border-ink bg-paper px-3 py-2 font-serif text-sm text-ink placeholder:text-ink-muted focus:outline-none focus:ring-1 focus:ring-ink w-full resize-none"
-          />
         </div>
 
         {/* Error general */}
