@@ -9,11 +9,31 @@ export function RSVPForm() {
   const [state, formAction, pending] = useActionState(submitRSVP, initialState)
 
   if (state.success) {
+    // Open WhatsApp in a new tab if success
+    if (typeof window !== 'undefined') {
+      const messageText = `¡Hola Jesús y Katherine! Confirmo mi asistencia a la boda. Mi nombre completo es: ${state.message.split('! ')[0].replace('¡Gracias, ', '')}.`
+      const encodedMessage = encodeURIComponent(messageText)
+      // Standard URL structure for WhatsApp message
+      window.open(`https://wa.me/573011965757?text=${encodedMessage}`, '_blank')
+    }
+
     return (
       <div className="border-2 border-ink p-8 text-center newspaper-texture bg-paper-dark">
         <div className="border border-ink p-6">
           <p className="font-blackletter text-4xl text-ink mb-3">¡Recibido!</p>
           <p className="font-serif text-base text-ink leading-relaxed">{state.message}</p>
+          
+          <div className="mt-4">
+            <a 
+              href={`https://wa.me/573011965757?text=${encodeURIComponent(`¡Hola Jesús y Katherine! Confirmo mi asistencia a la boda.`)}`}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-block bg-emerald-600 text-white font-serif text-xs uppercase tracking-widest px-4 py-2 border-2 border-emerald-700 hover:bg-emerald-500 transition-colors mt-2"
+            >
+              Enviar Mensaje por WhatsApp
+            </a>
+          </div>
+
           <div className="flex items-center gap-3 my-4">
             <div className="flex-1 h-px bg-ink-light" />
             <span className="font-serif text-ink-muted text-xs italic">con amor</span>
