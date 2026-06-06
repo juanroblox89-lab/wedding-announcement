@@ -1,36 +1,52 @@
 'use client'
 
-import { useActionState } from 'react'
-import { submitRSVP, type RSVPState } from '@/app/actions/rsvp'
-
-const initialState: RSVPState = { success: false, message: '' }
+import { useState } from 'react'
 
 export function RSVPForm() {
-  const [state, formAction, pending] = useActionState(submitRSVP, initialState)
+  const [nombre, setNombre] = useState('')
+  const [numInvitados, setNumInvitados] = useState('1')
+  const [submitted, setSubmitted] = useState(false)
+  const [error, setError] = useState('')
 
-  if (state.success) {
-    // Open WhatsApp in a new tab if success
+  const handleSubmit = (e: React.FormEvent) => {
+    e.preventDefault()
+    if (!nombre || nombre.trim().length < 2) {
+      setError('Por favor ingresa tu nombre completo.')
+      return
+    }
+    setError('')
+
+    const messageText = `¡Hola Jesús y Katherine! Confirmo mi asistencia a la boda. Mi nombre completo es: ${nombre.trim()} y asistiré con ${numInvitados} ${numInvitados === '1' ? 'persona' : 'personas'}.`
+    const encodedMessage = encodeURIComponent(messageText)
+    
+    // Redirect to WhatsApp
     if (typeof window !== 'undefined') {
-      const messageText = `¡Hola Jesús y Katherine! Confirmo mi asistencia a la boda. Mi nombre completo es: ${state.message.split('! ')[0].replace('¡Gracias, ', '')}.`
-      const encodedMessage = encodeURIComponent(messageText)
-      // Standard URL structure for WhatsApp message
       window.open(`https://wa.me/573011965757?text=${encodedMessage}`, '_blank')
     }
+    
+    setSubmitted(true)
+  }
+
+  if (submitted) {
+    const messageText = `¡Hola Jesús y Katherine! Confirmo mi asistencia a la boda. Mi nombre completo es: ${nombre.trim()} y asistiré con ${numInvitados} ${numInvitados === '1' ? 'persona' : 'personas'}.`
+    const encodedMessage = encodeURIComponent(messageText)
 
     return (
       <div className="border-2 border-ink p-8 text-center newspaper-texture bg-paper-dark">
         <div className="border border-ink p-6">
           <p className="font-blackletter text-4xl text-ink mb-3">¡Recibido!</p>
-          <p className="font-serif text-base text-ink leading-relaxed">{state.message}</p>
+          <p className="font-serif text-base text-ink leading-relaxed">
+            Hemos preparado tu confirmación para {numInvitados} {numInvitados === '1' ? 'persona' : 'personas'}.
+          </p>
           
           <div className="mt-4">
             <a 
-              href={`https://wa.me/573011965757?text=${encodeURIComponent(`¡Hola Jesús y Katherine! Confirmo mi asistencia a la boda.`)}`}
+              href={`https://wa.me/573011965757?text=${encodedMessage}`}
               target="_blank"
               rel="noopener noreferrer"
               className="inline-block bg-emerald-600 text-white font-serif text-xs uppercase tracking-widest px-4 py-2 border-2 border-emerald-700 hover:bg-emerald-500 transition-colors mt-2"
             >
-              Enviar Mensaje por WhatsApp
+              Enviar por WhatsApp nuevamente
             </a>
           </div>
 
@@ -48,7 +64,7 @@ export function RSVPForm() {
   }
 
   return (
-    <form action={formAction} className="border-2 border-ink newspaper-texture bg-paper-dark">
+    <form onSubmit={handleSubmit} className="border-2 border-ink newspaper-texture bg-paper-dark">
       <div className="border-b-2 border-ink p-4 text-center bg-ink">
         <p className="font-blackletter text-3xl text-paper tracking-wide">
           Confirma Tu Asistencia
@@ -66,11 +82,13 @@ export function RSVPForm() {
             name="nombre"
             type="text"
             required
+            value={nombre}
+            onChange={(e) => setNombre(e.target.value)}
             placeholder="Tu nombre y apellido"
             className="border border-ink bg-paper px-3 py-2 font-serif text-sm text-ink placeholder:text-ink-muted focus:outline-none focus:ring-1 focus:ring-ink w-full"
           />
-          {state.errors?.nombre && (
-            <p className="text-xs text-destructive font-serif">{state.errors.nombre}</p>
+          {error && (
+            <p className="text-xs text-destructive font-serif">{error}</p>
           )}
         </div>
 
@@ -82,7 +100,8 @@ export function RSVPForm() {
           <select
             id="num_invitados"
             name="num_invitados"
-            defaultValue="1"
+            value={numInvitados}
+            onChange={(e) => setNumInvitados(e.target.value)}
             className="border border-ink bg-paper px-3 py-2 font-serif text-sm text-ink focus:outline-none focus:ring-1 focus:ring-ink w-full"
           >
             {[1, 2, 3, 4, 5, 6, 7, 8].map((n) => (
@@ -91,25 +110,14 @@ export function RSVPForm() {
               </option>
             ))}
           </select>
-          {state.errors?.num_invitados && (
-            <p className="text-xs text-destructive font-serif">{state.errors.num_invitados}</p>
-          )}
         </div>
-
-        {/* Error general */}
-        {!state.success && state.message && !state.errors && (
-          <p className="text-sm text-destructive font-serif text-center border border-destructive p-2">
-            {state.message}
-          </p>
-        )}
 
         {/* Submit */}
         <button
           type="submit"
-          disabled={pending}
-          className="w-full bg-ink text-paper font-serif text-sm uppercase tracking-widest py-3 border-2 border-ink hover:bg-ink-light transition-colors disabled:opacity-50 disabled:cursor-not-allowed mt-2"
+          className="w-full bg-ink text-paper font-serif text-sm uppercase tracking-widest py-3 border-2 border-ink hover:bg-ink-light transition-colors mt-2 cursor-pointer"
         >
-          {pending ? 'Enviando...' : 'Confirmar Asistencia'}
+          Confirmar Asistencia
         </button>
 
         <p className="text-center text-xs text-ink-muted italic font-serif">
