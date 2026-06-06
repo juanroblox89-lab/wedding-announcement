@@ -43,7 +43,7 @@ export function Headline() {
           src="/couple-hero.jpg"
           alt="Jesús y Katherine en el momento de su compromiso"
           fill
-          className="object-cover"
+          className="object-cover grayscale contrast-125 brightness-95"
           priority
         />
         <div className="absolute inset-0 bg-ink/5" />
@@ -71,7 +71,7 @@ export function Headline() {
               src="/couple-rings.jpg"
               alt="El anillo de compromiso de Katherine"
               fill
-              className="object-cover"
+              className="object-cover grayscale contrast-125 brightness-95"
             />
           </div>
           <p className="text-xs text-ink-muted italic font-serif text-center">
